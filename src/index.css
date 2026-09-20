@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+/* =========================================================
+   DESIGN TOKENS — Pranshu Sharma portfolio
+   Dark cinematic ground, vivid coral accent
+   ========================================================= */
+:root {
+  --bg: #06060a;
+  --bg-soft: #0a0a10;
+  --surface: #0e0e14;
+  --surface-2: #14141c;
+
+  --text: #f4f4f6;
+  --muted: #9294a0;
+  --muted-strong: #c2c3cc;
+
+  --accent: #ff4d5a;
+  --accent-2: #ff8a5b;
+  --accent-soft: rgba(255, 77, 90, 0.12);
+  --good: #45d483;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 77, 90, 0.5);
+
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --radius: 20px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html.light {
+  --bg: #f6f6f8;
+  --bg-soft: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eef0f3;
+
+  --text: #101014;
+  --muted: #62636e;
+  --muted-strong: #3b3c46;
+
+  --accent-soft: rgba(255, 77, 90, 0.1);
+  --border: rgba(0, 0, 0, 0.1);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(255, 77, 90, 0.06), transparent 34%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Hidden-until-scroll scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 50px;
+}
+html:hover ::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* =========================================================
+   AMBIENT AURORA + GRID
+   ========================================================= */
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.14;
+  will-change: transform;
+  animation: floatOrb 24s ease-in-out infinite alternate;
+}
+html.light .aurora-orb {
+  opacity: 0.09;
+}
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.18); }
+  100% { transform: translate(-40px, 70px) scale(0.94); }
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(circle at 60% 40%, black, transparent 70%);
+  mask-image: radial-gradient(circle at 60% 40%, black, transparent 70%);
+}
+html.light .hero-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* =========================================================
+   CURSOR GLOW
+   ========================================================= */
+.cursor-glow {
+  position: fixed;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: rgba(255, 77, 90, 0.07);
+  filter: blur(80px);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* =========================================================
+   TYPOGRAPHY HELPERS
+   ========================================================= */
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.55);
+}
+html.light .outline-text {
+  -webkit-text-stroke: 1.2px rgba(0, 0, 0, 0.42);
+}
+
+.gradient-role {
+  background: linear-gradient(135deg, var(--text) 20%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+   REVEAL ON SCROLL
+   ========================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes pulseDot {
+  50% { opacity: 0.35; }
+}
+@keyframes pingRing {
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.animate-pulse-dot { animation: pulseDot 2s infinite; }
+.animate-ping-ring { animation: pingRing 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.animate-blink { animation: blink 0.85s infinite; }
+.animate-float-card { animation: floatCard 5.5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

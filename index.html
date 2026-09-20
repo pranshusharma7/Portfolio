@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- figma:head-start -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pranshu Sharma — Full Stack Developer & MERN Specialist. I build modern, responsive and high-performance digital web experiences." />
+    <meta name="author" content="Pranshu Sharma" />
+    <meta name="keywords" content="Pranshu Sharma, Full Stack Developer, MERN, React, Node.js, Web Developer, Portfolio" />
+    <meta name="theme-color" content="#06060a" />
+    <title>Pranshu Sharma | Full Stack Developer</title>
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pranshu Sharma | Full Stack Developer" />
+    <meta property="og:description" content="Full Stack Developer & MERN Specialist building modern, high-performance web experiences." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon (PS monogram) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2306060a'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='54' font-weight='700' fill='%23ff4d5a' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+    <!-- figma:head-end -->
+  </head>
+  <body>
+    <!-- figma:body-start -->
+
+    <!-- ================= PRELOADER ================= -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-monogram">PS</div>
+            <div class="preloader-bar"><span id="preloaderBar"></span></div>
+            <div class="preloader-label">LOADING PORTFOLIO</div>
+        </div>
+    </div>
+
+    <!-- ================= SCROLL PROGRESS BAR ================= -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- ================= AMBIENT AURORA MESH BACKGROUND ================= -->
+    <div class="ambient-mesh">
+        <div class="aurora-orb aurora-orb-1"></div>
+        <div class="aurora-orb aurora-orb-2"></div>
+        <div class="aurora-orb aurora-orb-3"></div>
+    </div>
+
+    <!-- ================= CURSOR GLOW ================= -->
+    <div class="cursor-glow"></div>
+
+    <!-- ================= CINEMATIC GRAIN OVERLAY ================= -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <a href="#home" class="logo" aria-label="Pranshu Sharma — home">
+            <span class="logo-mark">
+                <span class="logo-mark-inner">PS</span>
+            </span>
+            <span class="logo-word">PRANSHU<span class="logo-dot">.</span></span>
+        </a>
+
+        <nav class="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#certifications" class="nav-link">Certifications</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+            <button id="cmdkBtn" class="cmdk-trigger" aria-label="Open command palette">
+                <i class="bx bx-search"></i>
+                <span>Quick nav</span>
+                <kbd>⌘K</kbd>
+            </button>
+
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+                <i class="bx bx-moon"></i>
+            </button>
+
+            <button id="menuToggle" class="icon-btn menu-btn" aria-label="Open menu">
+                <i class="bx bx-menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= MOBILE MENU ================= -->
+    <div class="mobile-menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="hero-grid"></div>
+
+            <div class="hero-content reveal">
+                <span class="hero-label">
+                    <span class="status-dot-wrapper">
+                        <span class="status-dot"></span>
+                        <span class="status-dot-ring"></span>
+                    </span>
+                    AVAILABLE FOR OPPORTUNITIES
+                </span>
+
+                <p class="hero-intro">HELLO, I'M</p>
+
+                <h1>
+                    <span class="name-solid">Pranshu</span>
+                    <span>Sharma.</span>
+                </h1>
+
+                <h2>
+                    <span class="hero-role-wrapper">
+                        <span class="typed-role" id="typedRole">Full Stack Developer</span>
+                        <span class="typed-cursor">|</span>
+                    </span>
+                    <span class="accent-line"></span>
+                </h2>
+
+                <p class="hero-description">
+                    I build modern, responsive and high-performance digital web experiences with clean code, thoughtful architecture and a strong focus on user experience. Eager to innovate across the MERN stack.
+                </p>
+
+                <!-- Hero Buttons -->
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        View Projects
+                        <i class="bx bx-right-arrow-alt"></i>
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Let's Talk
+                        <i class="bx bx-send"></i>
+                    </a>
+
+                    <a href="Pranshu_Kumar_Resume_.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-style: dashed;" title="View GitHub / CV">
+                        <i class="bx bx-file"></i>
+                        Resume
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-row">
+                    <span>CONNECT</span>
+
+                    <div class="social-icons">
+                        <a href="https://github.com/pranshusharma7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="bx bxl-github"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/pranshu__sharma7/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="bx bxl-instagram"></i>
+                        </a>
+
+                        <a href="https://x.com/pranshu_sharma7" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                            <i class="bx bxl-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="hero-visual reveal">
+                <div class="visual-number">01</div>
+                <div class="image-glow"></div>
+
+                <div class="image-frame">
+                    <div class="image-border"></div>
+                    <img src="image.png" alt="Pranshu Sharma" onerror="this.onerror=null;this.src=&quot;data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'400'%20height%3D'500'%3E%3Cdefs%3E%3CradialGradient%20id%3D'g'%20cx%3D'50%25'%20cy%3D'35%25'%20r%3D'75%25'%3E%3Cstop%20offset%3D'0%25'%20stop-color%3D'%2523361016'%2F%3E%3Cstop%20offset%3D'100%25'%20stop-color%3D'%252314141c'%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20fill%3D'url(%2523g)'%2F%3E%3Ctext%20x%3D'50%25'%20y%3D'55%25'%20font-family%3D'Sora%2CArial%2Csans-serif'%20font-size%3D'170'%20font-weight%3D'700'%20fill%3D'%2523ff4d5a'%20text-anchor%3D'middle'%3EPS%3C%2Ftext%3E%3C%2Fsvg%3E&quot;">
+                </div>
+
+                <div class="floating-card card-one">
+                    <i class="bx bx-code-alt"></i>
+                    <div>
+                        <strong>Full Stack</strong>
+                        <span>Developer</span>
+                    </div>
+                </div>
+
+                <div class="floating-card card-two">
+                    <span class="mini-dot"></span>
+                    <div>
+                        <strong>Building</strong>
+                        <span>Digital Products</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll cue -->
+            <a href="#about" class="scroll-cue" aria-label="Scroll to about">
+                <span class="scroll-cue-mouse"><span></span></span>
+                <span class="scroll-cue-text">SCROLL</span>
+            </a>
+        </section>
+
+
+        <!-- ================= TECH MARQUEE ================= -->
+        <div class="marquee reveal" aria-hidden="true">
+            <div class="marquee-track">
+                <span>React</span><i class="bx bx-star"></i>
+                <span>Node.js</span><i class="bx bx-star"></i>
+                <span>MongoDB</span><i class="bx bx-star"></i>
+                <span>Express</span><i class="bx bx-star"></i>
+                <span>JavaScript</span><i class="bx bx-star"></i>
+                <span>Python</span><i class="bx bx-star"></i>
+                <span>Tailwind</span><i class="bx bx-star"></i>
+                <span>Git</span><i class="bx bx-star"></i>
+                <span>Figma</span><i class="bx bx-star"></i>
+                <!-- duplicate for seamless loop -->
+                <span>React</span><i class="bx bx-star"></i>
+                <span>Node.js</span><i class="bx bx-star"></i>
+                <span>MongoDB</span><i class="bx bx-star"></i>
+                <span>Express</span><i class="bx bx-star"></i>
+                <span>JavaScript</span><i class="bx bx-star"></i>
+                <span>Python</span><i class="bx bx-star"></i>
+                <span>Tailwind</span><i class="bx bx-star"></i>
+                <span>Git</span><i class="bx bx-star"></i>
+                <span>Figma</span><i class="bx bx-star"></i>
+            </div>
+        </div>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="section about" id="about">
+            <div class="section-heading reveal">
+                <span>01 — ABOUT</span>
+                <h2>
+                    Turning ideas into
+                    <span>digital experiences.</span>
+                </h2>
+            </div>
+
+            <div class="about-layout">
+                <div class="about-number reveal">
+                    <span>01</span>
+                    <div></div>
+                </div>
+
+                <div class="about-text reveal">
+                    <p class="large-text">
+                        I'm a developer passionate about creating modern, responsive and engaging digital experiences with clean architecture.
+                    </p>
+
+                    <p>
+                        I enjoy transforming complex ideas into intuitive, functional web products using modern technologies. My approach combines clean modular code, beautiful responsive interfaces, and practical problem solving.
+                    </p>
+
+                    <div class="about-stats">
+                        <div>
+                            <strong class="count-up" data-count="17" data-suffix="+">0</strong>
+                            <span>Technologies</span>
+                        </div>
+
+                        <div>
+                            <strong class="count-up" data-count="2" data-suffix="+" data-pad="2">0</strong>
+                            <span>Projects</span>
+                        </div>
+
+                        <div>
+                            <strong>∞</strong>
+                            <span>Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SERVICES / WHAT I DO ================= -->
+        <section class="section services" id="services">
+            <div class="section-heading reveal">
+                <span>02 — WHAT I DO</span>
+                <h2>
+                    How I can
+                    <span>help you.</span>
+                </h2>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card reveal">
+                    <div class="service-icon"><i class="bx bx-layout"></i></div>
+                    <h3>Frontend Development</h3>
+                    <p>Pixel-perfect, responsive interfaces with React, clean component architecture and smooth micro-interactions that feel alive.</p>
+                    <ul class="service-list">
+                        <li><i class="bx bx-check"></i> React &amp; modern JavaScript</li>
+                        <li><i class="bx bx-check"></i> Responsive, accessible UI</li>
+                        <li><i class="bx bx-check"></i> Tailwind &amp; design systems</li>
+                    </ul>
+                </article>
+
+                <article class="service-card reveal service-featured">
+                    <div class="service-icon"><i class="bx bx-server"></i></div>
+                    <h3>Backend Development</h3>
+                    <p>Robust REST APIs, authentication and scalable data models with Node, Express and MongoDB — built for real-world load.</p>
+                    <ul class="service-list">
+                        <li><i class="bx bx-check"></i> Node.js &amp; Express APIs</li>
+                        <li><i class="bx bx-check"></i> MongoDB &amp; MySQL</li>
+                        <li><i class="bx bx-check"></i> Auth &amp; secure endpoints</li>
+                    </ul>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-icon"><i class="bx bx-been-here"></i></div>
+                    <h3>Full-Stack Solutions</h3>
+                    <p>End-to-end MERN products — from idea and UI to deployment on Vercel or Netlify, wired together with care.</p>
+                    <ul class="service-list">
+                        <li><i class="bx bx-check"></i> Complete MERN stack</li>
+                        <li><i class="bx bx-check"></i> Deployment &amp; CI/CD</li>
+                        <li><i class="bx bx-check"></i> Performance-first builds</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ================= SKILLS ================= -->
+        <section class="section skills" id="skills">
+            <div class="section-heading reveal">
+                <span>03 — SKILLS</span>
+                <h2>
+                    Technologies I
+                    <span>work with.</span>
+                </h2>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Skill 01 -->
+                <div class="skill-card reveal" data-category="frontend" data-brand="html">
+                    <div class="skill-top">
+                        <i class="bx bxl-html5"></i>
+                        <span>01</span>
+                    </div>
+                    <h3>HTML5</h3>
+                    <p>Semantic, accessible and SEO-friendly web markup.</p>
+                </div>
+
+                <!-- Skill 02 -->
+                <div class="skill-card reveal" data-category="frontend" data-brand="css">
+                    <div class="skill-top">
+                        <i class="bx bxl-css3"></i>
+                        <span>02</span>
+                    </div>
+                    <h3>CSS3</h3>
+                    <p>Modern responsive layouts, flexbox, grid and animations.</p>
+                </div>
+
+                <!-- Skill 03 -->
+                <div class="skill-card reveal" data-category="frontend" data-brand="js">
+                    <div class="skill-top">
+                        <i class="bx bxl-javascript"></i>
+                        <span>03</span>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>Interactive, dynamic web applications and DOM manipulation.</p>
+                </div>
+
+                <!-- Skill 04 -->
+                <div class="skill-card reveal" data-category="frontend" data-brand="react">
+                    <div class="skill-top">
+                        <i class="bx bxl-react"></i>
+                        <span>04</span>
+                    </div>
+                    <h3>React JS</h3>
+                    <p>Component-based architecture, hooks and reactive UI state.</p>
+                </div>
+
+                <!-- Skill 05 -->
+                <div class="skill-card reveal" data-category="backend" data-brand="node">
+                    <div class="skill-top">
+                        <i class="bx bxl-nodejs"></i>
+                        <span>05</span>
+                    </div>
+                    <h3>Node JS</h3>
+                    <p>Server-side runtime logic and scalable backend services.</p>
+                </div>
+
+                <!-- Skill 06 -->
+                <div class="skill-card reveal" data-category="backend" data-brand="node">
+                    <div class="skill-top">
+                        <i class="bx bx-server"></i>
+                        <span>06</span>
+                    </div>
+                    <h3>Express.js</h3>
+                    <p>Robust REST APIs and middleware integration for Node.</p>
+                </div>
+
+                <!-- Skill 07 -->
+                <div class="skill-card reveal" data-category="backend" data-brand="mongo">
+                    <div class="skill-top">
+                        <i class="bx bxl-mongodb"></i>
+                        <span>07</span>
+                    </div>
+                    <h3>MongoDB</h3>
+                    <p>NoSQL schema design, queries and data aggregation.</p>
+                </div>
+
+                <!-- Skill 08 -->
+                <div class="skill-card reveal" data-category="backend" data-brand="mysql">
+                    <div class="skill-top">
+                        <i class="bx bx-data"></i>
+                        <span>08</span>
+                    </div>
+                    <h3>MySQL</h3>
+                    <p>Relational database management, SQL queries and data integrity.</p>
+                </div>
+
+                <!-- Skill 09 -->
+                <div class="skill-card reveal" data-category="language" data-brand="python">
+                    <div class="skill-top">
+                        <i class="bx bxl-python"></i>
+                        <span>09</span>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Versatile scripting, data structures, automation and backend logic.</p>
+                </div>
+
+                <!-- Skill 10 -->
+                <div class="skill-card reveal" data-category="language" data-brand="java">
+                    <div class="skill-top">
+                        <i class="bx bxl-java"></i>
+                        <span>10</span>
+                    </div>
+                    <h3>Java</h3>
+                    <p>Object-oriented programming, algorithms and core application design.</p>
+                </div>
+
+                <!-- Skill 11 -->
+                <div class="skill-card reveal" data-category="language" data-brand="c">
+                    <div class="skill-top">
+                        <i class="bx bx-code-alt"></i>
+                        <span>11</span>
+                    </div>
+                    <h3>C</h3>
+                    <p>Low-level programming fundamentals and memory management.</p>
+                </div>
+
+                <!-- Skill 12 -->
+                <div class="skill-card reveal" data-category="tools" data-brand="git">
+                    <div class="skill-top">
+                        <i class="bx bxl-github"></i>
+                        <span>12</span>
+                    </div>
+                    <h3>Git & GitHub</h3>
+                    <p>Version control, branch management and collaborative workflows.</p>
+                </div>
+
+                <!-- Skill 13 -->
+                <div class="skill-card reveal" data-category="frontend" data-brand="tailwind">
+                    <div class="skill-top">
+                        <i class="bx bxl-tailwind-css"></i>
+                        <span>13</span>
+                    </div>
+                    <h3>Tailwind CSS</h3>
+                    <p>Utility-first styling for rapid, clean and consistent UI design.</p>
+                </div>
+
+                <!-- Skill 14 -->
+                <div class="skill-card reveal" data-category="frontend" data-brand="bootstrap">
+                    <div class="skill-top">
+                        <i class="bx bxl-bootstrap"></i>
+                        <span>14</span>
+                    </div>
+                    <h3>Bootstrap</h3>
+                    <p>Responsive mobile-first grid systems and UI components.</p>
+                </div>
+
+                <!-- Skill 15 -->
+                <div class="skill-card reveal" data-category="tools" data-brand="figma">
+                    <div class="skill-top">
+                        <i class="bx bxl-figma"></i>
+                        <span>15</span>
+                    </div>
+                    <h3>Figma</h3>
+                    <p>UI/UX wireframing, component design and interactive prototyping.</p>
+                </div>
+
+                <!-- Skill 16 -->
+                <div class="skill-card reveal" data-category="tools" data-brand="vercel">
+                    <div class="skill-top">
+                        <i class="bx bx-cloud-upload"></i>
+                        <span>16</span>
+                    </div>
+                    <h3>Vercel</h3>
+                    <p>Fast cloud deployment, continuous delivery and edge hosting.</p>
+                </div>
+
+                <!-- Skill 17 -->
+                <div class="skill-card reveal" data-category="tools" data-brand="netlify">
+                    <div class="skill-top">
+                        <i class="bx bx-globe"></i>
+                        <span>17</span>
+                    </div>
+                    <h3>Netlify</h3>
+                    <p>Modern web application hosting, automated builds and CI/CD.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PROJECTS ================= -->
+        <section class="section projects" id="projects">
+            <div class="section-heading reveal">
+                <span>04 — WORK</span>
+                <h2>
+                    Things I've
+                    <span>built.</span>
+                </h2>
+            </div>
+
+            <div class="projects-list">
+                <!-- Project 01 -->
+                <article class="project-card reveal">
+                    <div class="project-index">01</div>
+
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=900&h=600&fit=crop&auto=format" loading="lazy" alt="Calculator Application">
+                        <div class="project-overlay">
+                            <i class="bx bx-link-external"></i>
+                        </div>
+                    </div>
+
+                    <div class="project-info">
+                        <span class="project-category">WEB APPLICATION</span>
+                        <h3>Calculator Application</h3>
+                        <p>
+                            A sleek, responsive calculator web app featuring standard mathematical operations, keyboard support, and a modern glassmorphic interface.
+                        </p>
+
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                        <a href="https://calculator-ashen-seven-31.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                            View Project
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 02 -->
+                <article class="project-card reverse reveal">
+                    <div class="project-index">02</div>
+
+                    <div class="project-image">
+                        <img src="medikiosk.png" loading="lazy" alt="Music Streaming Application">
+                        <div class="project-overlay">
+                            <i class="bx bx-link-external"></i>
+                        </div>
+                    </div>
+
+                    <div class="project-info">
+                        <span class="project-category">FULL STACK APPLICATION</span>
+                        <h3>Music Streaming Application</h3>
+                        <p>
+                            An engaging music streaming platform built with React and Node.js, featuring playback controls, playlist management, and dynamic audio visualization.
+                        </p>
+
+                        <div class="tech-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                        <a href="https://medi-kiosk-ochre.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                            View Project
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ================= CERTIFICATIONS ================= -->
+        <section class="section certifications" id="certifications">
+            <div class="section-heading reveal">
+                <span>05 — CREDENTIALS</span>
+                <h2>
+                    Certifications &
+                    <span>learning.</span>
+                </h2>
+            </div>
+
+            <div class="certification-grid">
+                <!-- Certification 01 -->
+                <article class="certification-card reveal">
+                    <div class="cert-icon">
+                        <i class="bx bx-award"></i>
+                    </div>
+
+                    <div class="cert-content">
+                        <span>CERTIFICATION</span>
+                        <h3>Web Development</h3>
+                        <p>
+                            Successfully completed comprehensive web development curriculum covering modern frontend and backend technologies.
+                        </p>
+
+                        <a href="https://www.linkedin.com/embed/feed/update/urn:li:share:7362411610709131264" target="_blank" rel="noopener noreferrer">
+                            View Certification
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+
+                    <span class="cert-number">01</span>
+                </article>
+
+                <!-- Certification 02 -->
+                <article class="certification-card reveal">
+                    <div class="cert-icon">
+                        <i class="bx bx-award"></i>
+                    </div>
+
+                    <div class="cert-content">
+                        <span>CERTIFICATION</span>
+                        <h3>Mastering Python, Pandas & NumPy</h3>
+                        <p>
+                            Hands-on mastery in data manipulation, computational analysis and Python programming fundamentals.
+                        </p>
+
+                        <a href="https://lnkd.in/p/djnqRbY2" target="_blank" rel="noopener noreferrer">
+                            View Certification
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+
+                    <span class="cert-number">02</span>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ================= CONTACT ================= -->
+        <section class="contact-section" id="contact">
+            <div class="contact-content reveal">
+                <span>06 — LET'S CONNECT</span>
+
+                <h2>
+                    Have an idea?
+                    <br>
+                    <em>Let's build it.</em>
+                </h2>
+
+                <p>
+                    I'm always open to discussing new projects, creative ideas, and exciting opportunities in tech.
+                </p>
+
+                <!-- Quick Copy Email Chip -->
+                <div class="quick-chips-row">
+                    <button type="button" class="copy-email-chip" id="copyEmailBtn" data-email="pranshukumar30072006@gmail.com">
+                        <i class="bx bx-copy"></i>
+                        <span>pranshu_sharma7@icloud.com</span>
+                        <span class="chip-copied-badge">Copied! ✨</span>
+                    </button>
+                </div>
+
+                <!-- Actions: Get In Touch & Contact Us Buttons -->
+                <div class="contact-actions">
+                    <a href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <i class="bx bxl-linkedin"></i>
+                        Get In Touch
+                    </a>
+                    <button id="toggleContactFormBtn" class="btn btn-primary" type="button">
+                        <i class="bx bx-envelope"></i>
+                        Contact Us
+                    </button>
+                </div>
+
+                <!-- Contact Form Container -->
+                <div class="contact-form-container" id="contactFormContainer">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="senderName">Your Name</label>
+                                <div class="input-wrapper">
+                                    <i class="bx bx-user"></i>
+                                    <input type="text" id="senderName" name="name" placeholder="Pranshu Sharma" required autocomplete="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="senderEmail">Your Email</label>
+                                <div class="input-wrapper">
+                                    <i class="bx bx-envelope"></i>
+                                    <input type="email" id="senderEmail" name="email" placeholder="example@gmail.com" required autocomplete="email">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senderSubject">Subject</label>
+                            <div class="input-wrapper">
+                                <i class="bx bx-chat"></i>
+                                <input type="text" id="senderSubject" name="subject" placeholder="Project Inquiry / Collaboration" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senderMessage">Message</label>
+                            <div class="input-wrapper textarea-wrapper">
+                                <i class="bx bx-message-detail"></i>
+                                <textarea id="senderMessage" name="message" rows="5" placeholder="Tell me about your project, idea or opportunity..." required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-status" id="formStatus"></div>
+
+                        <button type="submit" id="submitBtn" class="btn btn-primary btn-submit">
+                            <span class="btn-text">Send Message</span>
+                            <i class="bx bx-send"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= COMMAND PALETTE ================= -->
+    <div class="cmdk-overlay" id="cmdkOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div class="cmdk-panel">
+            <div class="cmdk-search">
+                <i class="bx bx-search"></i>
+                <input type="text" id="cmdkInput" placeholder="Jump to a section or action…" autocomplete="off">
+                <kbd>ESC</kbd>
+            </div>
+            <ul class="cmdk-list" id="cmdkList"></ul>
+            <div class="cmdk-foot">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> select</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">Pranshu<span>.</span></div>
+                <p>Full-stack developer crafting fast, accessible and delightful web experiences with the MERN stack. Always shipping, always learning.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/pranshusharma7" target="_blank" rel="noopener" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>NAVIGATE</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ELSEWHERE</h4>
+                <ul>
+                    <li><a href="https://github.com/pranshusharma7" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="Pranshu_Kumar_Resume_.pdf" target="_blank" rel="noopener">Resume</a></li>
+                    <li><a href="mailto:pranshu_sharma7@icloud.com">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 PRANSHU SHARMA — ALL RIGHTS RESERVED</span>
+            <span>BUILT WITH CODE, COFFEE &amp; <span class="heart">♥</span></span>
+        </div>
+    </footer>
+
+    <!-- ================= FLOATING BACK TO TOP BUTTON ================= -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+        <i class="bx bx-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="/script.js"></script>
+    <!-- figma:body-end -->
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "description": "Showcases a visually stunning, error-free portfolio website designed to captivate viewers and highlight professional skills effectively.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
