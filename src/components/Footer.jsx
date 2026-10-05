@@ -1,11 +1,11 @@
 import React from 'react';
 import { personalInfo } from '../data/portfolioData';
+import { smoothScrollTo } from '../utils/scroll';
 
 export default function Footer() {
   const scrollTo = (e, id) => {
     e.preventDefault();
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    smoothScrollTo(id);
   };
 
   return (

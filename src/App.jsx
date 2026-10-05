@@ -31,17 +31,24 @@ export default function App() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
-    // Snappy, hardware-accelerated 60/120fps Lenis instance
+    // Ultra-smooth, responsive 120fps/60fps Lenis instance with 0ms input lag
     const lenis = new Lenis({
       autoRaf: true,
-      duration: 0.75,
+      duration: 0.9,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.85,
-      touchMultiplier: 1,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
+      syncTouch: false,
     });
+
+    window.__lenis = lenis;
 
     return () => {
       lenis.destroy();
+      window.__lenis = null;
     };
   }, []);
 
@@ -50,11 +57,8 @@ export default function App() {
       <Router>
         <ScrollHandler />
 
-        {/* Fast & Clean Preloader */}
+        {/* Ultra-fast, zero-re-render Preloader */}
         <Preloader onComplete={() => setPreloaderFinished(true)} />
-
-        {/* Atmospheric Grain overlay (lightweight, no costly mix-blend-overlay) */}
-        <div className="pointer-events-none fixed inset-0 z-30 bg-grain opacity-50 dark:opacity-75" />
 
         {/* App Routes */}
         <Routes>

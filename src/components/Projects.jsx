@@ -57,6 +57,7 @@ export default function Projects() {
                         src={project.image}
                         alt={project.title}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                       <div className="absolute inset-0 bg-slate-950/10 dark:bg-[#06060a]/30 group-hover:bg-transparent transition-colors duration-300" />

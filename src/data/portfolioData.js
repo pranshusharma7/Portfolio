@@ -261,7 +261,7 @@ export const projects = [
     category: "FULL STACK APPLICATION",
     description:
       "An engaging music streaming platform built with React and Node.js, featuring playback controls, playlist management, and dynamic audio visualization.",
-    image: "/medikiosk.png",
+    image: "/medikiosk.jpg",
     liveUrl: "https://medi-kiosk-ochre.vercel.app/",
     githubUrl: "https://github.com/pranshusharma7",
     tags: ["React", "Node.js", "JavaScript"]

@@ -96,15 +96,19 @@ html.lenis, html.lenis body {
 /* Glassmorphism Cards */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
 }
 
 /* Subtle Grid Background for Hero */
@@ -123,27 +127,31 @@ html.lenis, html.lenis body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Aurora Orbs */
+/* Aurora Orbs - Hardware Accelerated 3D Transforms */
 @keyframes floatOrb1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, 35px) scale(1.12); }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(35px, 20px, 0) scale(1.07); }
 }
 
 @keyframes floatOrb2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-45px, -25px) scale(1.08); }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-30px, -18px, 0) scale(1.06); }
 }
 
 .aurora-orb-1 {
-  animation: floatOrb1 18s ease-in-out infinite;
+  animation: floatOrb1 20s ease-in-out infinite;
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .aurora-orb-2 {
-  animation: floatOrb2 22s ease-in-out infinite;
+  animation: floatOrb2 24s ease-in-out infinite;
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Text Gradients */
@@ -165,14 +173,18 @@ html.lenis, html.lenis body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Marquee Animation */
+/* Hardware Accelerated Marquee */
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .animate-marquee {
   animation: marquee 35s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .animate-marquee:hover {

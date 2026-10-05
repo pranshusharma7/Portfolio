@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { smoothScrollTo } from '../utils/scroll';
 
 export default function CommandPalette({ isOpen, onClose }) {
   const { theme, toggleTheme } = useTheme();
@@ -32,9 +33,24 @@ export default function CommandPalette({ isOpen, onClose }) {
       item.subtitle.toLowerCase().includes(query.toLowerCase())
   );
 
-  useEffect(() => {
+  const handleQueryChange = (e) => {
+    setQuery(e.target.value);
     setSelectedIndex(0);
-  }, [query]);
+  };
+
+  const executeItem = useCallback((item) => {
+    if (item.action === 'toggle_theme') {
+      toggleTheme();
+    } else if (item.sectionId) {
+      smoothScrollTo(item.sectionId);
+    } else if (item.externalUrl) {
+      window.open(item.externalUrl, '_blank', 'noopener,noreferrer');
+    } else if (item.action === 'copy_email') {
+      navigator.clipboard.writeText('pranshu_sharma7@icloud.com');
+      alert('Email copied to clipboard!');
+    }
+    onClose();
+  }, [toggleTheme, onClose]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -69,22 +85,7 @@ export default function CommandPalette({ isOpen, onClose }) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, filteredItems, selectedIndex, onClose]);
-
-  const executeItem = (item) => {
-    if (item.action === 'toggle_theme') {
-      toggleTheme();
-    } else if (item.sectionId) {
-      const el = document.getElementById(item.sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    } else if (item.externalUrl) {
-      window.open(item.externalUrl, '_blank', 'noopener,noreferrer');
-    } else if (item.action === 'copy_email') {
-      navigator.clipboard.writeText('pranshu_sharma7@icloud.com');
-      alert('Email copied to clipboard!');
-    }
-    onClose();
-  };
+  }, [isOpen, filteredItems, selectedIndex, onClose, executeItem]);
 
   return (
     <AnimatePresence>
@@ -114,7 +115,7 @@ export default function CommandPalette({ isOpen, onClose }) {
               <input
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleQueryChange}
                 placeholder="Jump to a section or action..."
                 autoFocus
                 className="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none text-base font-medium"

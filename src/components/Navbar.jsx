@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
+import { smoothScrollTo } from '../utils/scroll';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -58,11 +59,7 @@ export default function Navbar({ onOpenCmdk }) {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    smoothScrollTo(href);
   };
 
   return (

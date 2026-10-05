@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
+import { smoothScrollTo } from '../utils/scroll';
 
 const roles = ['Full Stack Developer', 'MERN Stack Specialist', 'AI & Creative Engineer'];
 
@@ -38,7 +39,7 @@ export default function Hero() {
       
       {/* Ambient glowing radial orbs (GPU-accelerated radial gradients, 0ms blur lag) */}
       <div
-        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] pointer-events-none rounded-full aurora-orb-1 opacity-70 dark:opacity-85"
+        className="absolute top-1/4 left-1/4 w-[420px] h-[420px] pointer-events-none rounded-full aurora-orb-1 opacity-70 dark:opacity-85"
         style={{
           background: 'radial-gradient(circle, rgba(255, 77, 90, 0.18) 0%, rgba(255, 77, 90, 0.05) 50%, transparent 70%)',
         }}
@@ -125,21 +126,23 @@ export default function Hero() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="flex flex-wrap items-center gap-4 mb-10"
             >
-              <a
-                href="#projects"
+              <button
+                type="button"
+                onClick={() => smoothScrollTo('projects')}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 hover:-translate-y-0.5"
               >
                 <span>View Projects</span>
                 <i className="bx bx-right-arrow-alt text-lg" />
-              </a>
+              </button>
 
-              <a
-                href="#contact"
+              <button
+                type="button"
+                onClick={() => smoothScrollTo('contact')}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.09] text-slate-800 dark:text-white border border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/20 font-medium text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
               >
                 <span>Let's Talk</span>
                 <i className="bx bx-send text-base text-[#ff4d5a]" />
-              </a>
+              </button>
 
               <a
                 href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/"
@@ -198,13 +201,17 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-              className="relative w-full max-w-[370px] aspect-[4/5] rounded-3xl p-2.5 bg-white/70 dark:bg-[#0c0c14]/80 border border-slate-200/80 dark:border-white/10 shadow-2xl backdrop-blur-xl group transition-all duration-500 hover:shadow-[0_20px_50px_rgba(255,77,90,0.15)]"
+              style={{ transform: 'translateZ(0)', willChange: 'transform' }}
+              className="relative w-full max-w-[370px] aspect-[4/5] rounded-3xl p-2.5 bg-white/80 dark:bg-[#0c0c14]/90 border border-slate-200/80 dark:border-white/10 shadow-2xl backdrop-blur-md group transition-all duration-500 hover:shadow-[0_20px_50px_rgba(255,77,90,0.15)]"
             >
               {/* Inner Editorial Photo Framing Container */}
               <div className="w-full h-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#0d0d16] relative border border-slate-200/50 dark:border-white/5">
                 <img
                   src="/pranshu-portrait.jpg"
                   alt="Pranshu Sharma"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-full h-full object-cover object-[center_18%] group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
@@ -238,7 +245,8 @@ export default function Hero() {
                 animate={{ y: [0, -6, 0] }}
                 transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
                 whileHover={{ scale: 1.05, y: -4 }}
-                className="absolute -bottom-3 -left-3 sm:-left-5 px-3.5 py-2.5 rounded-2xl bg-white/95 dark:bg-[#0e0e18]/95 border border-slate-200 dark:border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-3 transition-transform duration-300"
+                style={{ transform: 'translateZ(0)' }}
+                className="absolute -bottom-3 -left-3 sm:-left-5 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-[#0e0e18] border border-slate-200 dark:border-white/15 shadow-xl flex items-center gap-3 transition-transform duration-300"
               >
                 <div className="w-9 h-9 rounded-xl bg-[#ff4d5a]/15 border border-[#ff4d5a]/30 flex items-center justify-center text-[#ff4d5a] text-lg">
                   <i className="bx bx-code-alt" />
@@ -254,7 +262,8 @@ export default function Hero() {
                 animate={{ y: [0, 6, 0] }}
                 transition={{ repeat: Infinity, duration: 5.2, ease: 'easeInOut', delay: 0.6 }}
                 whileHover={{ scale: 1.05, y: -4 }}
-                className="absolute top-5 -right-3 sm:-right-5 px-3.5 py-2.5 rounded-2xl bg-white/95 dark:bg-[#0e0e18]/95 border border-slate-200 dark:border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-2.5 transition-transform duration-300"
+                style={{ transform: 'translateZ(0)' }}
+                className="absolute top-5 -right-3 sm:-right-5 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-[#0e0e18] border border-slate-200 dark:border-white/15 shadow-xl flex items-center gap-2.5 transition-transform duration-300"
               >
                 <span className="w-2.5 h-2.5 rounded-full bg-[#ff4d5a] shadow-[0_0_10px_#ff4d5a]" />
                 <div>
@@ -269,10 +278,11 @@ export default function Hero() {
       </div>
 
       {/* Bottom Scroll Cue */}
-      <a
-        href="#about"
+      <button
+        type="button"
+        onClick={() => smoothScrollTo('about')}
         aria-label="Scroll to about section"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-white transition-colors duration-300 group"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-white transition-colors duration-300 group cursor-pointer"
       >
         <div className="w-5 h-8 rounded-full border border-slate-300 dark:border-white/20 flex items-start justify-center p-1 group-hover:border-[#ff4d5a]/60 transition-colors">
           <motion.div
@@ -282,7 +292,7 @@ export default function Hero() {
           />
         </div>
         <span className="text-[10px] font-mono tracking-widest uppercase">SCROLL</span>
-      </a>
+      </button>
     </section>
   );
 }
