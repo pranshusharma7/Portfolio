@@ -1,0 +1,248 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { personalInfo } from '../data/portfolioData';
+
+const roles = ['Full Stack Developer', 'MERN Stack Specialist', 'Creative Web Engineer'];
+
+export default function Hero() {
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const fullText = roles[currentRoleIndex];
+    const typingSpeed = isDeleting ? 40 : 80;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(fullText.substring(0, displayText.length + 1));
+        if (displayText.length + 1 === fullText.length) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        setDisplayText(fullText.substring(0, displayText.length - 1));
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentRoleIndex]);
+
+  return (
+    <section id="home" className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+      {/* Background Grid & Aurora Mesh */}
+      <div className="absolute inset-0 hero-grid-bg pointer-events-none opacity-40" />
+      
+      {/* Ambient glowing radial orbs */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#ff4d5a]/15 rounded-full blur-[130px] pointer-events-none aurora-orb-1" />
+      <div className="absolute bottom-1/4 right-1/4 w-[420px] h-[420px] bg-[#6366f1]/10 rounded-full blur-[140px] pointer-events-none aurora-orb-2" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Text Information */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col justify-center"
+          >
+            {/* Status Chip */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 w-fit mb-6"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <span className="text-xs font-mono font-semibold tracking-wider text-emerald-400 uppercase">
+                {personalInfo.status}
+              </span>
+            </motion.div>
+
+            {/* Intro Header */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase mb-2"
+            >
+              {personalInfo.intro}
+            </motion.p>
+
+            {/* Main Name */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="font-sora text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4"
+            >
+              <span className="text-white">Pranshu</span>{' '}
+              <span className="text-zinc-400">Sharma.</span>
+            </motion.h1>
+
+            {/* Role Dynamic Typing */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-sora font-semibold text-zinc-300 mb-6"
+            >
+              <span className="text-[#ff4d5a]">{displayText}</span>
+              <span className="w-0.5 h-7 bg-[#ff4d5a] animate-pulse" />
+            </motion.div>
+
+            {/* Bio Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl mb-8"
+            >
+              {personalInfo.description}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex flex-wrap items-center gap-4 mb-10"
+            >
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 hover:-translate-y-0.5"
+              >
+                <span>View Projects</span>
+                <i className="bx bx-right-arrow-alt text-lg" />
+              </a>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.09] text-white border border-white/10 hover:border-white/20 font-medium text-sm transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <span>Let's Talk</span>
+                <i className="bx bx-send text-base text-[#ff4d5a]" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-dashed border-white/20 hover:border-[#ff4d5a]/60 text-zinc-300 hover:text-white font-medium text-sm transition-all duration-300"
+              >
+                <i className="bx bx-file text-base text-zinc-400" />
+                <span>Resume</span>
+              </a>
+            </motion.div>
+
+            {/* Connect / Social Row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="flex items-center gap-4 pt-4 border-t border-white/5"
+            >
+              <span className="text-xs font-mono font-medium tracking-wider text-zinc-500 uppercase">
+                CONNECT
+              </span>
+              <div className="flex items-center gap-2">
+                {personalInfo.socials.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.ariaLabel}
+                    className="w-9 h-9 rounded-lg bg-white/[0.03] hover:bg-[#ff4d5a]/15 border border-white/[0.08] hover:border-[#ff4d5a]/40 text-zinc-400 hover:text-[#ff4d5a] flex items-center justify-center text-lg transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <i className={`bx ${social.icon}`} />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Hero Visual Frame with Floating Badges */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative flex items-center justify-center"
+          >
+            {/* Decorative Number Badge */}
+            <div className="absolute -top-6 -right-2 font-sora font-extrabold text-7xl text-white/[0.03] select-none pointer-events-none">
+              01
+            </div>
+
+            {/* Glow backing */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#ff4d5a]/20 via-transparent to-[#6366f1]/20 rounded-3xl blur-2xl -z-10" />
+
+            {/* Visual Portrait Card */}
+            <div className="relative w-full max-w-[380px] aspect-[4/5] rounded-3xl p-2 bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/15 shadow-2xl backdrop-blur-sm overflow-hidden group">
+              <div className="w-full h-full rounded-2xl overflow-hidden bg-[#0d0d16] relative">
+                <img
+                  src="/hero-portrait.png"
+                  alt="Pranshu Sharma"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06060a]/90 via-transparent to-transparent opacity-60" />
+              </div>
+
+              {/* Floating Badge 1: Full Stack Developer */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
+                className="absolute -bottom-2 -left-4 sm:-left-6 px-4 py-3 rounded-2xl bg-[#0e0e18]/90 border border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-3"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#ff4d5a]/20 border border-[#ff4d5a]/30 flex items-center justify-center text-[#ff4d5a] text-xl">
+                  <i className="bx bx-code-alt" />
+                </div>
+                <div>
+                  <div className="text-xs font-semibold text-white">Full Stack</div>
+                  <div className="text-[11px] text-zinc-400">Developer</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Badge 2: Building Digital Products */}
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut', delay: 0.5 }}
+                className="absolute top-6 -right-3 sm:-right-5 px-4 py-2.5 rounded-2xl bg-[#0e0e18]/90 border border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-2.5"
+              >
+                <span className="w-2.5 h-2.5 rounded-full bg-[#ff4d5a] shadow-[0_0_10px_#ff4d5a]" />
+                <div>
+                  <div className="text-xs font-semibold text-white">Building</div>
+                  <div className="text-[11px] text-zinc-400">Digital Products</div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+
+      {/* Bottom Scroll Cue */}
+      <a
+        href="#about"
+        aria-label="Scroll to about section"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-500 hover:text-white transition-colors duration-300 group"
+      >
+        <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1 group-hover:border-[#ff4d5a]/60 transition-colors">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+            className="w-1 h-2 rounded-full bg-[#ff4d5a]"
+          />
+        </div>
+        <span className="text-[10px] font-mono tracking-widest uppercase">SCROLL</span>
+      </a>
+    </section>
+  );
+}
