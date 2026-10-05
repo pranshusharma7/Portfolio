@@ -45,7 +45,7 @@ export const personalInfo = {
 
 export const stats = [
   { value: 17, suffix: "+", label: "Technologies" },
-  { value: 2, suffix: "+", label: "Projects" },
+  { value: 3, suffix: "+", label: "Projects" },
   { value: "∞", suffix: "", label: "Learning" }
 ];
 
@@ -245,15 +245,14 @@ export const skills = [
 export const projects = [
   {
     id: "01",
-    title: "Calculator Application",
-    category: "WEB APPLICATION",
+    title: "CodeForge",
+    category: "ONLINE IDE & COMPILER",
     description:
-      "A sleek, responsive calculator web app featuring standard mathematical operations, keyboard support, and a modern glassmorphic interface.",
-    image:
-      "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=900&h=600&fit=crop&auto=format",
-    liveUrl: "https://calculator-ashen-seven-31.vercel.app/",
+      "A fast, modern cloud-based online code compiler and IDE supporting Python, JavaScript, C++, Java, and Rust. Features instant code execution, multi-file workspace, clean developer-centric UI, and real-time execution outputs in seconds.",
+    image: "/codeforge.jpg",
+    liveUrl: "https://codeforge-jgy9.vercel.app",
     githubUrl: "https://github.com/pranshusharma7",
-    tags: ["HTML", "CSS", "JavaScript"]
+    tags: ["React", "Node.js", "Online IDE", "Compiler Engine", "Tailwind CSS"]
   },
   {
     id: "02",
@@ -265,6 +264,18 @@ export const projects = [
     liveUrl: "https://medi-kiosk-ochre.vercel.app/",
     githubUrl: "https://github.com/pranshusharma7",
     tags: ["React", "Node.js", "JavaScript"]
+  },
+  {
+    id: "03",
+    title: "Calculator Application",
+    category: "WEB APPLICATION",
+    description:
+      "A sleek, responsive calculator web app featuring standard mathematical operations, keyboard support, and a modern glassmorphic interface.",
+    image:
+      "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=900&h=600&fit=crop&auto=format",
+    liveUrl: "https://calculator-ashen-seven-31.vercel.app/",
+    githubUrl: "https://github.com/pranshusharma7",
+    tags: ["HTML", "CSS", "JavaScript"]
   }
 ];
 
