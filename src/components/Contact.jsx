@@ -42,7 +42,13 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       {/* Background ambient radial light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ff4d5a]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-60 dark:opacity-85"
+        style={{
+          background: 'radial-gradient(circle, rgba(255, 77, 90, 0.16) 0%, rgba(255, 77, 90, 0.04) 50%, transparent 70%)',
+          transform: 'translate3d(-50%, -50%, 0)',
+        }}
+      />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         {/* Section Heading */}

@@ -21,7 +21,13 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-[#6366f1]/5 dark:bg-[#6366f1]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div
+        className="absolute top-1/3 left-1/3 -translate-x-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-50 dark:opacity-75"
+        style={{
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.03) 50%, transparent 70%)',
+          transform: 'translateZ(0)',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading & Category Filter Row */}

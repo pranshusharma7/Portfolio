@@ -6,7 +6,13 @@ export default function Services() {
   return (
     <section id="services" className="py-24 relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#ff4d5a]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div
+        className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full pointer-events-none opacity-60 dark:opacity-80"
+        style={{
+          background: 'radial-gradient(circle, rgba(255, 77, 90, 0.15) 0%, rgba(255, 77, 90, 0.04) 50%, transparent 70%)',
+          transform: 'translateZ(0)',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
