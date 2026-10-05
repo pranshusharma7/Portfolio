@@ -6,7 +6,13 @@ export default function About() {
   return (
     <section id="about" className="py-24 relative overflow-hidden">
       {/* Subtle background glow */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#ff4d5a]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 -left-20 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none opacity-60 dark:opacity-80"
+        style={{
+          background: 'radial-gradient(circle, rgba(255, 77, 90, 0.14) 0%, rgba(255, 77, 90, 0.03) 50%, transparent 70%)',
+          transform: 'translateZ(0)',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}

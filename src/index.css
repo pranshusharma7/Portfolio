@@ -50,8 +50,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    scroll-behavior: auto !important;
   }
 
   body {
@@ -60,7 +59,6 @@
     color: var(--text-primary);
     overflow-x: hidden;
     cursor: default; /* Always natural, standard cursor */
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, .font-sora {
@@ -138,10 +136,14 @@ html.lenis, html.lenis body {
 
 .aurora-orb-1 {
   animation: floatOrb1 18s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .aurora-orb-2 {
   animation: floatOrb2 22s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Text Gradients */

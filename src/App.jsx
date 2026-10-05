@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { ThemeProvider } from './context/ThemeContext';
 import Preloader from './components/Preloader';
 import Home from './pages/Home';
-
-gsap.registerPlugin(ScrollTrigger);
 
 function ScrollHandler() {
   const location = useLocation();
@@ -17,7 +13,7 @@ function ScrollHandler() {
     if (location.hash) {
       setTimeout(() => {
         const el = document.getElementById(location.hash.replace('#', ''));
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) el.scrollIntoView({ behavior: 'auto' });
       }, 100);
     } else {
       window.scrollTo({ top: 0, behavior: 'instant' });
@@ -35,28 +31,16 @@ export default function App() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
-    // Initialize Lenis smooth scroll
+    // Snappy, hardware-accelerated 60/120fps Lenis instance
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      autoRaf: true,
+      duration: 0.75,
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.85,
+      touchMultiplier: 1,
     });
 
-    lenis.on('scroll', ScrollTrigger.update);
-
-    const updateTicker = (time) => {
-      lenis.raf(time * 1000);
-    };
-
-    gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
-
     return () => {
-      gsap.ticker.remove(updateTicker);
       lenis.destroy();
     };
   }, []);
@@ -69,8 +53,8 @@ export default function App() {
         {/* Fast & Clean Preloader */}
         <Preloader onComplete={() => setPreloaderFinished(true)} />
 
-        {/* Atmospheric Grain overlay (subtle in light mode, atmospheric in dark mode) */}
-        <div className="pointer-events-none fixed inset-0 z-30 bg-grain opacity-10 dark:opacity-25 mix-blend-overlay" />
+        {/* Atmospheric Grain overlay (lightweight, no costly mix-blend-overlay) */}
+        <div className="pointer-events-none fixed inset-0 z-30 bg-grain opacity-50 dark:opacity-75" />
 
         {/* App Routes */}
         <Routes>

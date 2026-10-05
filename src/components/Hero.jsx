@@ -36,9 +36,19 @@ export default function Hero() {
       {/* Background Grid & Aurora Mesh */}
       <div className="absolute inset-0 hero-grid-bg pointer-events-none opacity-40 dark:opacity-40" />
       
-      {/* Ambient glowing radial orbs */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#ff4d5a]/10 dark:bg-[#ff4d5a]/15 rounded-full blur-[140px] pointer-events-none aurora-orb-1" />
-      <div className="absolute bottom-1/4 right-1/4 w-[420px] h-[420px] bg-[#6366f1]/10 rounded-full blur-[150px] pointer-events-none aurora-orb-2" />
+      {/* Ambient glowing radial orbs (GPU-accelerated radial gradients, 0ms blur lag) */}
+      <div
+        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] pointer-events-none rounded-full aurora-orb-1 opacity-70 dark:opacity-85"
+        style={{
+          background: 'radial-gradient(circle, rgba(255, 77, 90, 0.18) 0%, rgba(255, 77, 90, 0.05) 50%, transparent 70%)',
+        }}
+      />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-[460px] h-[460px] pointer-events-none rounded-full aurora-orb-2 opacity-60 dark:opacity-75"
+        style={{
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0.04) 50%, transparent 70%)',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
