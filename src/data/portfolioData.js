@@ -13,6 +13,7 @@ export const personalInfo = {
   aboutText2:
     "I enjoy transforming complex ideas into intuitive, functional web products using modern technologies. My approach combines clean modular code, beautiful responsive interfaces, and practical problem solving.",
   email: "pranshu_sharma7@icloud.com",
+  gmail: "pranshukumar30072006@gmail.com",
   backupEmail: "pranshukumar30072006@gmail.com",
   resumeUrl: "https://www.linkedin.com/in/pranshu-kumar-6742a4323/",
   socials: [

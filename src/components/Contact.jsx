@@ -5,7 +5,7 @@ import { personalInfo } from '../data/portfolioData';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,29 +14,70 @@ export default function Contact() {
   });
   const [status, setStatus] = useState({ loading: false, success: false, message: '' });
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(personalInfo.email);
+  const targetGmail = personalInfo.gmail || 'pranshukumar30072006@gmail.com';
+
+  const handleCopyEmail = (emailToCopy) => {
+    navigator.clipboard.writeText(emailToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: false, message: '' });
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${targetGmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `Portfolio Message from ${formData.name}: ${formData.subject}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && (data.success === 'true' || data.success === true)) {
+        setStatus({
+          loading: false,
+          success: true,
+          message: 'Thank you! Your message has been delivered directly to my Gmail inbox.',
+        });
+        confetti({
+          particleCount: 90,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      console.error('Contact submission error:', err);
+      // Fallback: open mail client to ensure message is never lost
+      const mailtoUrl = `mailto:${targetGmail}?subject=${encodeURIComponent(
+        formData.subject
+      )}&body=${encodeURIComponent(
+        `Hi Pranshu,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+      )}`;
+
       setStatus({
         loading: false,
-        success: true,
-        message: 'Thank you! Your message has been sent successfully.'
+        success: false,
+        message: 'Could not send automatically via network. Opening your mail client to send directly...',
       });
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1000);
+      window.location.href = mailtoUrl;
+    }
   };
 
   return (
@@ -67,40 +108,40 @@ export default function Contact() {
             <span className="italic font-light text-slate-600 dark:text-zinc-300">Let's build it.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            I'm always open to discussing new projects, creative ideas, and exciting opportunities in tech.
+            I'm always open to discussing new projects, creative ideas, and exciting opportunities in tech. Send a message directly to my Gmail!
           </p>
         </motion.div>
 
-        {/* Quick Copy Email Chip */}
+        {/* Quick Copy Email Chips */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center mb-8"
+          className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
           <button
             type="button"
-            onClick={handleCopyEmail}
-            className="group relative inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white dark:bg-white/[0.04] hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 hover:border-[#ff4d5a]/40 text-sm font-mono text-slate-800 dark:text-zinc-200 transition-all duration-300 shadow-md shadow-slate-200/50 dark:shadow-lg"
+            onClick={() => handleCopyEmail(targetGmail)}
+            className="group relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-white/[0.04] hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 hover:border-[#ea4335]/50 text-xs sm:text-sm font-mono text-slate-800 dark:text-zinc-200 transition-all duration-300 shadow-sm cursor-pointer"
           >
-            <i className="bx bx-copy text-lg text-[#ff4d5a] group-hover:scale-110 transition-transform" />
-            <span>{personalInfo.email}</span>
+            <i className="bx bxl-gmail text-base text-[#ea4335] group-hover:scale-110 transition-transform" />
+            <span>{targetGmail}</span>
             {copied && (
-              <span className="ml-2 px-2.5 py-0.5 rounded-full bg-[#ff4d5a] text-white text-[11px] font-sans font-semibold shadow-md animate-fade-in">
+              <span className="ml-1.5 px-2 py-0.5 rounded-full bg-[#ff4d5a] text-white text-[10px] font-sans font-semibold shadow-xs animate-fade-in">
                 Copied! ✨
               </span>
             )}
           </button>
         </motion.div>
 
-        {/* Action Buttons: Get In Touch & Contact Us */}
+        {/* Action Buttons: LinkedIn, Open in Gmail, Toggle Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-4 mb-12"
+          className="flex flex-wrap items-center justify-center gap-4 mb-10"
         >
           <a
             href="https://www.linkedin.com/in/pranshu-kumar-6742a4323/"
@@ -109,16 +150,26 @@ export default function Contact() {
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-white/[0.04] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/25 text-slate-800 dark:text-white font-medium text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
           >
             <i className="bx bxl-linkedin text-lg text-[#0077b5]" />
-            <span>Get In Touch</span>
+            <span>LinkedIn Profile</span>
+          </a>
+
+          <a
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${targetGmail}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-white/[0.04] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/10 hover:border-[#ea4335]/40 text-slate-800 dark:text-white font-medium text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
+          >
+            <i className="bx bxl-gmail text-lg text-[#ea4335]" />
+            <span>Compose in Gmail</span>
           </a>
 
           <button
             type="button"
             onClick={() => setShowForm(!showForm)}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 hover:-translate-y-0.5 cursor-pointer"
           >
             <i className="bx bx-envelope text-lg" />
-            <span>{showForm ? 'Hide Form' : 'Contact Us'}</span>
+            <span>{showForm ? 'Hide Form' : 'Write Message'}</span>
           </button>
         </motion.div>
 
@@ -132,6 +183,22 @@ export default function Contact() {
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="text-left bg-white/95 dark:bg-[#0d0d16]/90 border border-slate-200 dark:border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl overflow-hidden"
             >
+              {/* Direct Gmail delivery indicator */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-6 mb-6 border-b border-slate-200 dark:border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  </span>
+                  <span className="text-xs font-mono font-semibold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
+                    Direct Gmail Delivery
+                  </span>
+                </div>
+                <span className="text-xs font-mono text-slate-500 dark:text-zinc-400">
+                  Inbox: <span className="text-[#ea4335] font-semibold">{targetGmail}</span>
+                </span>
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -153,7 +220,7 @@ export default function Contact() {
 
                   <div>
                     <label className="block text-xs font-mono font-medium text-slate-500 dark:text-zinc-400 uppercase mb-2">
-                      Your Email
+                      Your Email (For Reply)
                     </label>
                     <div className="relative">
                       <i className="bx bx-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-500 text-lg" />
@@ -180,7 +247,7 @@ export default function Contact() {
                       required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="Project Inquiry / Collaboration"
+                      placeholder="Project Inquiry / Job Opportunity"
                       className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#ff4d5a] focus:bg-white transition-colors"
                     />
                   </div>
@@ -197,7 +264,7 @@ export default function Contact() {
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell me about your project, idea or opportunity..."
+                      placeholder="Write your message here..."
                       className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#ff4d5a] focus:bg-white transition-colors resize-none"
                     />
                   </div>
@@ -205,23 +272,33 @@ export default function Contact() {
 
                 {status.message && (
                   <div
-                    className={`p-4 rounded-xl text-xs font-medium ${
+                    className={`p-4 rounded-xl text-xs font-medium flex items-center gap-2 ${
                       status.success
                         ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                         : 'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20'
                     }`}
                   >
-                    {status.message}
+                    <i className={`bx ${status.success ? 'bx-check-circle text-base' : 'bx-error-circle text-base'}`} />
+                    <span>{status.message}</span>
                   </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={status.loading}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-[#ff4d5a]/25 disabled:opacity-50"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-[#ff4d5a]/25 disabled:opacity-50 cursor-pointer"
                 >
-                  <span>{status.loading ? 'Sending...' : 'Send Message'}</span>
-                  <i className="bx bx-send text-base" />
+                  {status.loading ? (
+                    <>
+                      <i className="bx bx-loader-alt animate-spin text-base" />
+                      <span>Sending to Gmail...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send to Gmail</span>
+                      <i className="bx bx-send text-base" />
+                    </>
+                  )}
                 </button>
               </form>
             </motion.div>
