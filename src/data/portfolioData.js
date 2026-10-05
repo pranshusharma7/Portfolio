@@ -257,14 +257,14 @@ export const projects = [
   },
   {
     id: "02",
-    title: "Music Streaming Application",
-    category: "FULL STACK APPLICATION",
+    title: "MediKiosk",
+    category: "AI × HEALTHCARE / SMART KIOSK",
     description:
-      "An engaging music streaming platform built with React and Node.js, featuring playback controls, playlist management, and dynamic audio visualization.",
+      "An intelligent healthcare kiosk platform engineered for automated clinical intake and triage. Features voice-driven conversation, symptom timeline extraction, multilingual translation, and structured FHIR medical summary generation.",
     image: "/medikiosk.jpg",
     liveUrl: "https://medi-kiosk-ochre.vercel.app/",
     githubUrl: "https://github.com/pranshusharma7",
-    tags: ["React", "Node.js", "JavaScript"]
+    tags: ["React", "Node.js", "AI / LLM", "Web Speech API", "Tailwind CSS"]
   },
   {
     id: "03",
@@ -296,5 +296,21 @@ export const certifications = [
     description:
       "Hands-on mastery in data manipulation, computational analysis and Python programming fundamentals.",
     link: "https://lnkd.in/p/djnqRbY2"
+  },
+  {
+    id: "03",
+    category: "SPECIALIZATION",
+    title: "Deep Learning & Neural Networks",
+    description:
+      "In-depth specialization in neural networks, forward/backward propagation, and deep learning architectures.",
+    link: "https://www.linkedin.com/in/pranshu-kumar-6742a4323/details/certifications/"
+  },
+  {
+    id: "04",
+    category: "ALGORITHMS & DSA",
+    title: "JavaScript Algorithms & Data Structures",
+    description:
+      "Mastery of algorithmic paradigms: dynamic programming, graph traversal, trees, and core computational complexity.",
+    link: "https://www.linkedin.com/in/pranshu-kumar-6742a4323/details/certifications/"
   }
 ];

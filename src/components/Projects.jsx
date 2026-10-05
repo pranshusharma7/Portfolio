@@ -137,6 +137,28 @@ export default function Projects() {
             );
           })}
         </div>
+
+        {/* View More Projects Action Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-16 flex justify-center"
+        >
+          <a
+            href="https://github.com/pranshusharma7?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white dark:bg-[#0c0c16]/90 border border-slate-200 dark:border-white/10 hover:border-[#ff4d5a]/50 text-slate-800 dark:text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-slate-200/50 dark:shadow-none hover:shadow-xl hover:shadow-[#ff4d5a]/10 hover:-translate-y-1"
+          >
+            <div className="w-8 h-8 rounded-xl bg-[#ff4d5a]/10 dark:bg-[#ff4d5a]/15 text-[#ff4d5a] flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i className="bx bxl-github" />
+            </div>
+            <span>View More Projects on GitHub</span>
+            <i className="bx bx-right-arrow-alt text-lg text-slate-400 dark:text-zinc-500 group-hover:text-[#ff4d5a] group-hover:translate-x-1.5 transition-all" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
