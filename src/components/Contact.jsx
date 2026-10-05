@@ -14,7 +14,7 @@ export default function Contact() {
   });
   const [status, setStatus] = useState({ loading: false, success: false, message: '' });
 
-  const targetGmail = personalInfo.gmail || 'pranshukumar30072006@gmail.com';
+  const targetEmail = personalInfo.email || 'pranshu_sharma7@icloud.com';
 
   const handleCopyEmail = (emailToCopy) => {
     navigator.clipboard.writeText(emailToCopy);
@@ -27,7 +27,7 @@ export default function Contact() {
     setStatus({ loading: true, success: false, message: '' });
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${targetGmail}`, {
+      const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function Contact() {
         setStatus({
           loading: false,
           success: true,
-          message: 'Thank you! Your message has been delivered directly to my Gmail inbox.',
+          message: 'Thank you! Your message has been delivered directly to my inbox.',
         });
         confetti({
           particleCount: 90,
@@ -65,7 +65,7 @@ export default function Contact() {
     } catch (err) {
       console.error('Contact submission error:', err);
       // Fallback: open mail client to ensure message is never lost
-      const mailtoUrl = `mailto:${targetGmail}?subject=${encodeURIComponent(
+      const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(
         formData.subject
       )}&body=${encodeURIComponent(
         `Hi Pranshu,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
@@ -108,11 +108,11 @@ export default function Contact() {
             <span className="italic font-light text-slate-600 dark:text-zinc-300">Let's build it.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            I'm always open to discussing new projects, creative ideas, and exciting opportunities in tech. Send a message directly to my Gmail!
+            I'm always open to discussing new projects, creative ideas, and exciting opportunities in tech. Send a message directly below!
           </p>
         </motion.div>
 
-        {/* Quick Copy Email Chips */}
+        {/* Quick Copy Email Chip */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -122,11 +122,11 @@ export default function Contact() {
         >
           <button
             type="button"
-            onClick={() => handleCopyEmail(targetGmail)}
-            className="group relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-white/[0.04] hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 hover:border-[#ea4335]/50 text-xs sm:text-sm font-mono text-slate-800 dark:text-zinc-200 transition-all duration-300 shadow-sm cursor-pointer"
+            onClick={() => handleCopyEmail(targetEmail)}
+            className="group relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-white/[0.04] hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 hover:border-[#ff4d5a]/40 text-xs sm:text-sm font-mono text-slate-800 dark:text-zinc-200 transition-all duration-300 shadow-sm cursor-pointer"
           >
-            <i className="bx bxl-gmail text-base text-[#ea4335] group-hover:scale-110 transition-transform" />
-            <span>{targetGmail}</span>
+            <i className="bx bx-envelope text-base text-[#ff4d5a] group-hover:scale-110 transition-transform" />
+            <span>{targetEmail}</span>
             {copied && (
               <span className="ml-1.5 px-2 py-0.5 rounded-full bg-[#ff4d5a] text-white text-[10px] font-sans font-semibold shadow-xs animate-fade-in">
                 Copied! ✨
@@ -135,7 +135,7 @@ export default function Contact() {
           </button>
         </motion.div>
 
-        {/* Action Buttons: LinkedIn, Open in Gmail, Toggle Form */}
+        {/* Action Buttons: LinkedIn Profile & Toggle Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,16 +151,6 @@ export default function Contact() {
           >
             <i className="bx bxl-linkedin text-lg text-[#0077b5]" />
             <span>LinkedIn Profile</span>
-          </a>
-
-          <a
-            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${targetGmail}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-white/[0.04] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/10 hover:border-[#ea4335]/40 text-slate-800 dark:text-white font-medium text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
-          >
-            <i className="bx bxl-gmail text-lg text-[#ea4335]" />
-            <span>Compose in Gmail</span>
           </a>
 
           <button
@@ -183,7 +173,7 @@ export default function Contact() {
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="text-left bg-white/95 dark:bg-[#0d0d16]/90 border border-slate-200 dark:border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl overflow-hidden"
             >
-              {/* Direct Gmail delivery indicator */}
+              {/* Direct inbox delivery indicator */}
               <div className="flex flex-wrap items-center justify-between gap-2 pb-6 mb-6 border-b border-slate-200 dark:border-white/10">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2.5 w-2.5">
@@ -191,11 +181,11 @@ export default function Contact() {
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
                   </span>
                   <span className="text-xs font-mono font-semibold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
-                    Direct Gmail Delivery
+                    Direct Inbox Delivery
                   </span>
                 </div>
                 <span className="text-xs font-mono text-slate-500 dark:text-zinc-400">
-                  Inbox: <span className="text-[#ea4335] font-semibold">{targetGmail}</span>
+                  To: <span className="text-[#ff4d5a] font-semibold">{targetEmail}</span>
                 </span>
               </div>
 
@@ -291,11 +281,11 @@ export default function Contact() {
                   {status.loading ? (
                     <>
                       <i className="bx bx-loader-alt animate-spin text-base" />
-                      <span>Sending to Gmail...</span>
+                      <span>Sending Message...</span>
                     </>
                   ) : (
                     <>
-                      <span>Send to Gmail</span>
+                      <span>Send Message</span>
                       <i className="bx bx-send text-base" />
                     </>
                   )}
