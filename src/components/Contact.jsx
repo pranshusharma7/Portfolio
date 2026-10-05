@@ -59,24 +59,29 @@ export default function Contact() {
           origin: { y: 0.6 },
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
+      } else if (data.message && data.message.toLowerCase().includes('activation')) {
+        setStatus({
+          loading: false,
+          success: true,
+          isActivation: true,
+          message:
+            "One-time activation required: FormSubmit has sent an 'Activate Form' confirmation email to pranshu_sharma7@icloud.com. Please open that email and click the activation link!",
+        });
       } else {
         throw new Error(data.message || 'Submission failed');
       }
     } catch (err) {
       console.error('Contact submission error:', err);
-      // Fallback: open mail client to ensure message is never lost
-      const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(
-        formData.subject
-      )}&body=${encodeURIComponent(
-        `Hi Pranshu,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
-      )}`;
-
       setStatus({
         loading: false,
         success: false,
-        message: 'Could not send automatically via network. Opening your mail client to send directly...',
+        fallbackMailto: `mailto:${targetEmail}?subject=${encodeURIComponent(
+          formData.subject || 'Portfolio Inquiry'
+        )}&body=${encodeURIComponent(
+          `Hi Pranshu,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+        )}`,
+        message: err.message || 'Unable to deliver message right now. Please try again or email directly.',
       });
-      window.location.href = mailtoUrl;
     }
   };
 
@@ -262,14 +267,34 @@ export default function Contact() {
 
                 {status.message && (
                   <div
-                    className={`p-4 rounded-xl text-xs font-medium flex items-center gap-2 ${
+                    className={`p-4 rounded-xl text-xs font-medium flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${
                       status.success
-                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                        ? status.isActivation
+                          ? 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/25'
+                          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                         : 'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20'
                     }`}
                   >
-                    <i className={`bx ${status.success ? 'bx-check-circle text-base' : 'bx-error-circle text-base'}`} />
-                    <span>{status.message}</span>
+                    <div className="flex items-center gap-2">
+                      <i
+                        className={`bx ${
+                          status.success
+                            ? status.isActivation
+                              ? 'bx-info-circle text-base'
+                              : 'bx-check-circle text-base'
+                            : 'bx-error-circle text-base'
+                        }`}
+                      />
+                      <span>{status.message}</span>
+                    </div>
+                    {status.fallbackMailto && (
+                      <a
+                        href={status.fallbackMailto}
+                        className="px-3 py-1.5 rounded-lg bg-red-500 text-white font-semibold text-[11px] whitespace-nowrap hover:bg-red-600 transition-colors"
+                      >
+                        Send via Mail App
+                      </a>
+                    )}
                   </div>
                 )}
 
