@@ -21,7 +21,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-[#6366f1]/5 dark:bg-[#6366f1]/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading & Category Filter Row */}
@@ -30,13 +30,13 @@ export default function Skills() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="text-xs font-mono font-semibold tracking-widest text-[#ff4d5a] uppercase">
               03 — SKILLS
             </span>
-            <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-2">
-              Technologies I <span className="text-zinc-400">work with.</span>
+            <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mt-2">
+              Technologies I <span className="text-slate-400 dark:text-zinc-400">work with.</span>
             </h2>
           </motion.div>
 
@@ -46,7 +46,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.08]"
+            className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.08]"
           >
             {categories.map((cat) => {
               const isActive = selectedCategory === cat.id;
@@ -55,7 +55,9 @@ export default function Skills() {
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`relative px-4 py-2 rounded-xl text-xs font-medium transition-colors duration-200 ${
-                    isActive ? 'text-white' : 'text-zinc-400 hover:text-zinc-200'
+                    isActive
+                      ? 'text-white'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-zinc-200'
                   }`}
                 >
                   {isActive && (
@@ -65,7 +67,7 @@ export default function Skills() {
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
-                  <span className="relative z-10">{cat.label}</span>
+                  <span className="relative z-10 font-semibold">{cat.label}</span>
                 </button>
               );
             })}
@@ -84,29 +86,29 @@ export default function Skills() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group relative p-6 rounded-2xl bg-[#0c0c16]/80 border border-white/[0.07] hover:border-[#ff4d5a]/40 hover:bg-[#111120] transition-all duration-300"
+                className="group relative p-6 rounded-2xl bg-white dark:bg-[#0c0c16]/80 border border-slate-200/90 dark:border-white/[0.07] hover:border-[#ff4d5a]/40 hover:bg-slate-50 dark:hover:bg-[#111120] transition-all duration-300 shadow-sm dark:shadow-none"
               >
                 {/* Top Row: Icon + Index */}
                 <div className="flex items-center justify-between mb-4">
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl transition-all duration-300 group-hover:scale-110"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl transition-all duration-300 group-hover:scale-110 shadow-xs"
                     style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      backgroundColor: 'rgba(255, 77, 90, 0.08)',
                       color: skill.color || '#ff4d5a'
                     }}
                   >
                     <i className={`bx ${skill.icon}`} />
                   </div>
-                  <span className="font-mono text-xs font-semibold text-zinc-500 group-hover:text-zinc-400">
+                  <span className="font-mono text-xs font-semibold text-slate-400 dark:text-zinc-500 group-hover:text-slate-600 dark:group-hover:text-zinc-400">
                     {skill.id}
                   </span>
                 </div>
 
                 {/* Name & Description */}
-                <h3 className="font-sora text-base font-bold text-white mb-2 group-hover:text-[#ff4d5a] transition-colors">
+                <h3 className="font-sora text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#ff4d5a] transition-colors">
                   {skill.name}
                 </h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">
                   {skill.description}
                 </p>
               </motion.div>

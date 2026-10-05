@@ -4,6 +4,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { ThemeProvider } from './context/ThemeContext';
 import Preloader from './components/Preloader';
 import Home from './pages/Home';
 
@@ -61,20 +62,22 @@ export default function App() {
   }, []);
 
   return (
-    <Router>
-      <ScrollHandler />
+    <ThemeProvider>
+      <Router>
+        <ScrollHandler />
 
-      {/* Fast & Clean Preloader */}
-      <Preloader onComplete={() => setPreloaderFinished(true)} />
+        {/* Fast & Clean Preloader */}
+        <Preloader onComplete={() => setPreloaderFinished(true)} />
 
-      {/* Atmospheric Film Noise overlay */}
-      <div className="pointer-events-none fixed inset-0 z-30 bg-noise opacity-25 mix-blend-overlay" />
+        {/* Atmospheric Grain overlay (subtle in light mode, atmospheric in dark mode) */}
+        <div className="pointer-events-none fixed inset-0 z-30 bg-grain opacity-10 dark:opacity-25 mix-blend-overlay" />
 
-      {/* App Routes */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
-    </Router>
+        {/* App Routes */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }

@@ -90,8 +90,6 @@ export default function ProjectCard({ project, index }) {
         ease: EASE_ENTER,
       }}
       className="group relative select-none"
-      data-cursor="project"
-      data-cursor-text="VIEW"
       style={{ perspective: 1000 }}
     >
       <motion.div

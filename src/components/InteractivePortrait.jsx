@@ -167,8 +167,6 @@ export default function InteractivePortrait() {
           >
             <motion.div
               ref={containerRef}
-              data-cursor="explore"
-              data-cursor-text="EXPLORE"
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -280,30 +278,6 @@ export default function InteractivePortrait() {
                   </div>
                 </div>
               </div>
-
-              {/* Floating Magnetic Label on Hover ("HELLO, I'M PRANSHU" / "VIEW ME") */}
-              <AnimatePresence>
-                {isHovered && !isTouchDevice && (
-                  <motion.div
-                    style={{
-                      x: labelX,
-                      y: labelY,
-                      translateX: '-50%',
-                      translateY: '-50%',
-                    }}
-                    initial={{ opacity: 0, scale: 0.6, filter: 'blur(8px)' }}
-                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, scale: 0.6, filter: 'blur(6px)' }}
-                    transition={{ duration: 0.25, ease: EASE_ENTER }}
-                    className="pointer-events-none absolute top-0 left-0 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 text-black shadow-xl backdrop-blur-md border border-white"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-ping" />
-                    <span className="text-[10px] font-mono font-bold tracking-wider uppercase">
-                      HELLO, I'M PRANSHU
-                    </span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </motion.div>
           </div>
 

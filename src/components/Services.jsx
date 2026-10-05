@@ -14,14 +14,14 @@ export default function Services() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <span className="text-xs font-mono font-semibold tracking-widest text-[#ff4d5a] uppercase">
             02 — WHAT I DO
           </span>
-          <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-2">
-            How I can <span className="text-zinc-400">help you.</span>
+          <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mt-2">
+            How I can <span className="text-slate-400 dark:text-zinc-400">help you.</span>
           </h2>
         </motion.div>
 
@@ -38,8 +38,8 @@ export default function Services() {
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className={`relative p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 ${
                   service.featured
-                    ? 'bg-gradient-to-b from-[#ff4d5a]/10 via-[#0e0e18] to-[#0a0a12] border-2 border-[#ff4d5a]/40 shadow-xl shadow-[#ff4d5a]/10'
-                    : 'bg-[#0d0d16]/80 border border-white/[0.08] hover:border-white/20'
+                    ? 'bg-gradient-to-b from-[#ff4d5a]/10 via-white to-slate-50 dark:from-[#ff4d5a]/10 dark:via-[#0e0e18] dark:to-[#0a0a12] border-2 border-[#ff4d5a]/50 dark:border-[#ff4d5a]/40 shadow-xl shadow-[#ff4d5a]/10'
+                    : 'bg-white/85 dark:bg-[#0d0d16]/80 border border-slate-200/80 dark:border-white/[0.08] hover:border-[#ff4d5a]/30 dark:hover:border-white/20 shadow-md shadow-slate-200/50 dark:shadow-none'
                 }`}
               >
                 {service.featured && (
@@ -54,26 +54,26 @@ export default function Services() {
                     className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 ${
                       service.featured
                         ? 'bg-[#ff4d5a] text-white shadow-lg shadow-[#ff4d5a]/30'
-                        : 'bg-white/[0.05] border border-white/10 text-[#ff4d5a]'
+                        : 'bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/10 text-[#ff4d5a]'
                     }`}
                   >
                     <i className={`bx ${service.icon}`} />
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="font-sora text-xl font-bold text-white mb-3">
+                  <h3 className="font-sora text-xl font-bold text-slate-900 dark:text-white mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                  <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed mb-6">
                     {service.description}
                   </p>
                 </div>
 
                 {/* Service Bullet List */}
-                <ul className="space-y-2.5 pt-6 border-t border-white/[0.08]">
+                <ul className="space-y-2.5 pt-6 border-t border-slate-200 dark:border-white/[0.08]">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2.5 text-xs text-zinc-300">
-                      <span className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">
+                    <li key={feature} className="flex items-center gap-2.5 text-xs text-slate-700 dark:text-zinc-300">
+                      <span className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-[10px] shrink-0 font-bold">
                         <i className="bx bx-check" />
                       </span>
                       <span>{feature}</span>

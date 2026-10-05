@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -18,7 +19,7 @@ export default function Navbar({ onOpenCmdk }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
 
       const sections = ['home', 'about', 'services', 'skills', 'projects', 'certifications', 'contact'];
       const scrollPos = window.scrollY + 200;
@@ -50,7 +51,7 @@ export default function Navbar({ onOpenCmdk }) {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'py-3.5 bg-[#06060a]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/20'
+          ? 'py-3.5 bg-white/80 dark:bg-[#06060a]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/[0.08] shadow-sm dark:shadow-black/20'
           : 'py-5 bg-transparent'
       }`}
     >
@@ -61,16 +62,16 @@ export default function Navbar({ onOpenCmdk }) {
           onClick={(e) => handleNavClick(e, '#home')}
           className="group flex items-center gap-3 select-none"
         >
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center font-sora font-extrabold text-[#ff4d5a] text-lg shadow-inner group-hover:border-[#ff4d5a]/60 group-hover:shadow-[0_0_15px_rgba(255,77,90,0.3)] transition-all duration-300">
+          <div className="relative w-10 h-10 rounded-xl bg-slate-100 dark:bg-gradient-to-br dark:from-white/10 dark:to-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center font-sora font-extrabold text-[#ff4d5a] text-lg shadow-sm group-hover:border-[#ff4d5a]/60 group-hover:shadow-[0_0_15px_rgba(255,77,90,0.25)] transition-all duration-300">
             PS
           </div>
-          <div className="font-sora font-bold tracking-tight text-white text-lg">
+          <div className="font-sora font-bold tracking-tight text-slate-900 dark:text-white text-lg">
             PRANSHU<span className="text-[#ff4d5a]">.</span>
           </div>
         </a>
 
         {/* Desktop Navbar */}
-        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md">
+        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-slate-200/50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.08] backdrop-blur-md">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
@@ -79,13 +80,15 @@ export default function Navbar({ onOpenCmdk }) {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
-                  isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  isActive
+                    ? 'text-slate-950 dark:text-white font-semibold'
+                    : 'text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-white'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute inset-0 rounded-full bg-[#ff4d5a]/15 border border-[#ff4d5a]/40 shadow-[0_0_12px_rgba(255,77,90,0.25)]"
+                    className="absolute inset-0 rounded-full bg-[#ff4d5a]/10 dark:bg-[#ff4d5a]/15 border border-[#ff4d5a]/30 dark:border-[#ff4d5a]/40 shadow-[0_0_12px_rgba(255,77,90,0.15)]"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -101,20 +104,23 @@ export default function Navbar({ onOpenCmdk }) {
           <button
             onClick={onOpenCmdk}
             aria-label="Quick Nav"
-            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-medium text-zinc-300 hover:text-white transition-all duration-200"
+            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.08] text-xs font-medium text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white transition-all duration-200"
           >
             <i className="bx bx-search text-sm text-[#ff4d5a]" />
             <span>Quick nav</span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-[10px] font-mono text-zinc-400">
+            <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-white/10 text-[10px] font-mono text-slate-500 dark:text-zinc-400">
               ⌘K
             </kbd>
           </button>
+
+          {/* Theme Switcher Toggle */}
+          <ThemeToggle />
 
           {/* Let's Talk CTA button */}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white text-xs font-semibold shadow-md shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 transition-all duration-200"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white text-xs font-semibold shadow-md shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 transition-all duration-200 hover:-translate-y-0.5"
           >
             <span>Let's Talk</span>
             <i className="bx bx-send text-sm" />
@@ -124,7 +130,7 @@ export default function Navbar({ onOpenCmdk }) {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            className="lg:hidden p-2 rounded-xl bg-white/[0.04] border border-white/10 text-white hover:bg-white/[0.08] transition-colors"
+            className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-300 dark:border-white/10 text-slate-800 dark:text-white hover:bg-slate-200 dark:hover:bg-white/[0.08] transition-colors"
           >
             <i className={`bx ${mobileMenuOpen ? 'bx-x' : 'bx-menu'} text-2xl`} />
           </button>
@@ -139,7 +145,7 @@ export default function Navbar({ onOpenCmdk }) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="lg:hidden bg-[#0a0a10]/95 border-b border-white/10 backdrop-blur-2xl overflow-hidden px-4 py-4 space-y-1"
+            className="lg:hidden bg-white/95 dark:bg-[#0a0a10]/95 border-b border-slate-200 dark:border-white/10 backdrop-blur-2xl overflow-hidden px-4 py-4 space-y-1 shadow-xl"
           >
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
@@ -150,21 +156,21 @@ export default function Navbar({ onOpenCmdk }) {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-all ${
                     isActive
-                      ? 'bg-[#ff4d5a]/15 text-[#ff4d5a] border border-[#ff4d5a]/30'
-                      : 'text-zinc-300 hover:bg-white/5 hover:text-white'
+                      ? 'bg-[#ff4d5a]/10 dark:bg-[#ff4d5a]/15 text-[#ff4d5a] border border-[#ff4d5a]/30'
+                      : 'text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {link.name}
                 </a>
               );
             })}
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+            <div className="pt-3 border-t border-slate-200 dark:border-white/10 flex flex-col gap-2">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenCmdk();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 text-sm font-medium text-zinc-300"
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-100 dark:bg-white/5 text-sm font-medium text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-white/10"
               >
                 <i className="bx bx-search text-[#ff4d5a]" />
                 <span>Search / Quick Nav (⌘K)</span>

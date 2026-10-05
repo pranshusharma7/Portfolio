@@ -14,14 +14,14 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <span className="text-xs font-mono font-semibold tracking-widest text-[#ff4d5a] uppercase">
             04 — WORK
           </span>
-          <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-2">
-            Things I've <span className="text-zinc-400">built.</span>
+          <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mt-2">
+            Things I've <span className="text-slate-400 dark:text-zinc-400">built.</span>
           </h2>
         </motion.div>
 
@@ -36,8 +36,8 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.7, delay: index * 0.2 }}
-                className="relative rounded-3xl p-6 sm:p-10 bg-[#0d0d18]/80 border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-2xl"
+                transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="relative rounded-3xl p-6 sm:p-10 bg-white/95 dark:bg-[#0d0d18]/80 border border-slate-200/90 dark:border-white/[0.08] hover:border-[#ff4d5a]/30 dark:hover:border-white/20 transition-all duration-300 shadow-xl shadow-slate-200/50 dark:shadow-2xl"
               >
                 <div
                   className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
@@ -46,14 +46,14 @@ export default function Projects() {
                 >
                   {/* Image Column */}
                   <div className={`lg:col-span-7 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <div className="relative group rounded-2xl overflow-hidden bg-black/40 border border-white/10 aspect-[16/10]">
+                    <div className="relative group rounded-2xl overflow-hidden bg-slate-100 dark:bg-black/40 border border-slate-200 dark:border-white/10 aspect-[16/10] shadow-sm">
                       <img
                         src={project.image}
                         alt={project.title}
                         loading="lazy"
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
-                      <div className="absolute inset-0 bg-[#06060a]/30 group-hover:bg-transparent transition-colors duration-300" />
+                      <div className="absolute inset-0 bg-slate-950/10 dark:bg-[#06060a]/30 group-hover:bg-transparent transition-colors duration-300" />
 
                       {/* External Link overlay icon */}
                       <a
@@ -76,17 +76,17 @@ export default function Projects() {
                       <span className="text-xs font-mono font-bold tracking-widest text-[#ff4d5a] uppercase">
                         {project.category}
                       </span>
-                      <span className="text-zinc-600">•</span>
-                      <span className="text-xs font-mono text-zinc-500">
+                      <span className="text-slate-300 dark:text-zinc-600">•</span>
+                      <span className="text-xs font-mono text-slate-400 dark:text-zinc-500">
                         0{index + 1}
                       </span>
                     </div>
 
-                    <h3 className="font-sora text-2xl sm:text-3xl font-bold text-white mb-4">
+                    <h3 className="font-sora text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
                       {project.title}
                     </h3>
 
-                    <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed mb-6">
                       {project.description}
                     </p>
 
@@ -95,7 +95,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300"
+                          className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-700 dark:text-zinc-300 font-medium"
                         >
                           {tag}
                         </span>
@@ -108,7 +108,7 @@ export default function Projects() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-medium text-xs transition-all duration-300 shadow-md shadow-[#ff4d5a]/20"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#ff4d5a] hover:bg-[#ff3b4b] text-white font-medium text-xs transition-all duration-300 shadow-md shadow-[#ff4d5a]/25 hover:shadow-[#ff4d5a]/40 hover:-translate-y-0.5"
                       >
                         <span>View Project</span>
                         <i className="bx bx-right-arrow-alt text-base" />
@@ -118,7 +118,7 @@ export default function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-zinc-300 hover:text-white border border-white/10 font-medium text-xs transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 hover:text-slate-950 dark:text-zinc-300 dark:hover:text-white border border-slate-300 dark:border-white/10 font-medium text-xs transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
                       >
                         <i className="bx bxl-github text-base" />
                         <span>Source</span>

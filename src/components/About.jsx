@@ -14,14 +14,14 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <span className="text-xs font-mono font-semibold tracking-widest text-[#ff4d5a] uppercase">
             01 — ABOUT
           </span>
-          <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-2">
-            Turning ideas into <span className="text-zinc-400">digital experiences.</span>
+          <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mt-2">
+            Turning ideas into <span className="text-slate-400 dark:text-zinc-400">digital experiences.</span>
           </h2>
         </motion.div>
 
@@ -35,10 +35,10 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="hidden lg:flex lg:col-span-2 flex-col items-center gap-4 pt-2"
           >
-            <span className="font-sora font-extrabold text-5xl text-white/20 select-none">
+            <span className="font-sora font-extrabold text-5xl text-slate-200 dark:text-white/20 select-none">
               01
             </span>
-            <div className="w-px h-32 bg-gradient-to-b from-white/20 to-transparent" />
+            <div className="w-px h-32 bg-gradient-to-b from-slate-300 dark:from-white/20 to-transparent" />
           </motion.div>
 
           {/* Text and Stats */}
@@ -49,16 +49,16 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-10 space-y-8"
           >
-            <p className="text-xl sm:text-2xl text-zinc-200 font-light leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-800 dark:text-zinc-200 font-light leading-relaxed">
               {personalInfo.aboutText1}
             </p>
 
-            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-3xl">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
               {personalInfo.aboutText2}
             </p>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-8 border-t border-white/10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-8 border-t border-slate-200 dark:border-white/10">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -67,13 +67,13 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * i }}
                   whileHover={{ y: -4 }}
-                  className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-[#ff4d5a]/40 hover:bg-white/[0.06] transition-all duration-300"
+                  className="p-6 rounded-2xl bg-white/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.08] hover:border-[#ff4d5a]/40 hover:bg-white dark:hover:bg-white/[0.06] transition-all duration-300 shadow-sm dark:shadow-none"
                 >
-                  <div className="font-sora text-4xl sm:text-5xl font-extrabold text-white mb-2 flex items-baseline">
+                  <div className="font-sora text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-2 flex items-baseline">
                     <span>{stat.value}</span>
                     <span className="text-[#ff4d5a] text-3xl ml-0.5">{stat.suffix}</span>
                   </div>
-                  <div className="text-xs sm:text-sm font-mono tracking-wider text-zinc-400 uppercase">
+                  <div className="text-xs sm:text-sm font-mono tracking-wider text-slate-500 dark:text-zinc-400 uppercase font-medium">
                     {stat.label}
                   </div>
                 </motion.div>

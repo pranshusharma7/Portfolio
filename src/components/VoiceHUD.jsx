@@ -36,8 +36,6 @@ export default function VoiceHUD() {
         {/* Equalizer Waveform Bars */}
         <div
           onClick={handleReplayVoice}
-          data-cursor="pointer"
-          data-cursor-text="VOICE"
           className="flex items-center gap-0.5 cursor-pointer py-1"
           title="Replay Voice Welcome"
         >
@@ -69,8 +67,6 @@ export default function VoiceHUD() {
         {/* Text Label / Status */}
         <div
           onClick={handleReplayVoice}
-          data-cursor="pointer"
-          data-cursor-text="VOICE"
           className="flex items-center gap-1.5 cursor-pointer"
         >
           <span className="font-mono text-[10px] tracking-wider uppercase text-zinc-300 group-hover:text-white transition-colors">
@@ -85,8 +81,6 @@ export default function VoiceHUD() {
         {/* Replay Icon */}
         <button
           onClick={handleReplayVoice}
-          data-cursor="pointer"
-          data-cursor-text="REPLAY"
           aria-label="Replay Welcome Greeting"
           className="p-1 rounded-full text-zinc-400 hover:text-white transition-colors"
         >
@@ -96,8 +90,6 @@ export default function VoiceHUD() {
         {/* Mute Toggle */}
         <button
           onClick={handleToggleMute}
-          data-cursor="pointer"
-          data-cursor-text={audioState.isMuted ? 'UNMUTE' : 'MUTE'}
           aria-label={audioState.isMuted ? 'Unmute Audio' : 'Mute Audio'}
           className="p-1 rounded-full text-zinc-400 hover:text-white transition-colors"
         >

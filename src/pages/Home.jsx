@@ -23,7 +23,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#06060a] text-[#ededed] overflow-x-hidden selection:bg-[#ff4d5a] selection:text-white">
+    <div className="relative min-h-screen bg-[#f8fafc] text-slate-900 dark:bg-[#06060a] dark:text-[#ededed] transition-colors duration-300 overflow-x-hidden selection:bg-[#ff4d5a] selection:text-white">
       {/* Top Scroll Progress Bar */}
       <ScrollProgress />
 
